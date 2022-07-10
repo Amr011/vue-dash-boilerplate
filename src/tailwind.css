@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
+  font-family: 'Lora', serif;
+} */
+
+.myContainer {
+  @apply mx-auto max-w-[1100px];
+}
+.myCenter {
+  @apply flex justify-center border;
+}
