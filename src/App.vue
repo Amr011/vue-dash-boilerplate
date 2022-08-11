@@ -7,6 +7,6 @@ export default {}
     <main>
       <router-view />
     </main>
-    <menuFooter v-if="$route.meta.title" />
+    <!--<div v-if="$route.meta.title"></div>-->
   </div>
 </template>

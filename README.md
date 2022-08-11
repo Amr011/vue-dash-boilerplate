@@ -1,4 +1,4 @@
-#### Vite Vue Tailwind DIGITAL MENU SOLOUTION
+#### Vite Vue Tailwind Dashboard Boilerplate
 
 #### Created By Amr Aboras
 

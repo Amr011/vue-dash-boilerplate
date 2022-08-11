@@ -1,5 +1,5 @@
 {
-    "name": "vite-menu",
+    "name": "vite-dashboard",
     "version": "1.0.0",
     "scripts": {
         "dev": "vite --host",
