@@ -2,6 +2,7 @@
 import Footer from '@/components/footer.vue'
 import feedCard from './../components/feedCard.vue'
 import feedDetail from './../components/feedDetail.vue'
+import SideBar from '@/components/sideBar.vue'
 export default {
   name: 'Home',
 
@@ -9,6 +10,7 @@ export default {
     feedCard,
     feedDetail,
     Footer,
+    SideBar,
   },
 
   data() {
@@ -24,7 +26,7 @@ cd
     <div class="bg-blue-200">
       <div class="bg-red-200">
         <div class="grid h-screen grid-cols-12 bg-indigo-400">
-          <div class="col-span-2 bg-green-400 p-5">Sidebar</div>
+          <side-bar />
           <div class="col-span-4 bg-blue-400 p-5">
             <p class="mb-4">Feeds</p>
             <feed-card v-for="card in cardCount" :key="card" />
