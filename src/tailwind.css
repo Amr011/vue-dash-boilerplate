@@ -12,3 +12,7 @@
 .myCenter {
   @apply flex justify-center border;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
