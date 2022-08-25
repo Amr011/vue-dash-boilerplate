@@ -5,6 +5,11 @@ const routes = [
     meta: { title: 'Home' },
   },
   {
+    path: '/dashboard',
+    component: () => import('./views/dashboard.vue'),
+    meta: { title: 'Dashboard' },
+  },
+  {
     // Not Found 404
     path: '/:path(.*)',
     component: () => import('./views/NotFound.vue'),

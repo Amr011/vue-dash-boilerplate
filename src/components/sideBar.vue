@@ -2,11 +2,24 @@
 export default {
   name: 'side-bar',
   methods: {
-    async toggelFocesed(arr) {
+    async toggleFocused(arr) {
+      arr.map((e) => {
+        if (e.link === this.$route.path) {
+          e.focused = true
+        } else {
+          e.focused = false
+        }
+      })
+    },
+    async toggleSwitched(arr) {
       arr.map((e) => {
         e.focused = false
       })
     },
+  },
+
+  created() {
+    this.toggleFocused(this.items)
   },
   data() {
     return {
@@ -17,7 +30,8 @@ export default {
   <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
   <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
 </svg>`,
-          focused: true,
+          focused: false,
+          link: '/',
         },
 
         {
@@ -26,6 +40,7 @@ export default {
   <path d="M6 1H1v14h5V1zm9 0h-5v5h5V1zm0 9v5h-5v-5h5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1h-5z"/>
 </svg>`,
           focused: false,
+          link: '/dashboard',
         },
         {
           title: 'Analytics',
@@ -33,6 +48,7 @@ export default {
   <path d="M7.5 1.018a7 7 0 0 0-4.79 11.566L7.5 7.793V1.018zm1 0V7.5h6.482A7.001 7.001 0 0 0 8.5 1.018zM14.982 8.5H8.207l-4.79 4.79A7 7 0 0 0 14.982 8.5zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
 </svg>`,
           focused: false,
+          link: '/analytics',
         },
         {
           title: 'Schedules',
@@ -41,6 +57,7 @@ export default {
   <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
 </svg>`,
           focused: false,
+          link: '/schedules',
         },
         {
           title: 'History',
@@ -49,6 +66,7 @@ export default {
   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
 </svg>`,
           focused: false,
+          link: '/history',
         },
       ],
     }
@@ -57,7 +75,7 @@ export default {
 </script>
 
 <template>
-  <div class="col-span-2 grid grid-rows-6 bg-white">
+  <div class="col-span-2 bg-white">
     <div class="">
       <div class="p-[20px]">
         <a href="#" class="my-[20px] flex items-center">
@@ -71,10 +89,16 @@ export default {
             v-for="item in items"
             :key="item"
             class="flex h-[48px] items-center"
-            @click="toggelFocesed(items), (item.focused = true)"
+            @click="toggleSwitched(items), (item.focused = true)"
           >
-            <a
-              href="#"
+            <!--
+              $route.path == item.link
+                ? (toggelFocesed(items), (item.focused = true))
+                : (toggelFocesed(items), (item.focused = false))
+
+-->
+            <router-link
+              :to="item.link"
               class="my-[12px] w-full p-[20px]"
               :class="item.focused ? ' border-l-4 border-green-600 bg-gray-100' : 'ml-[4px]'"
             >
@@ -82,12 +106,11 @@ export default {
                 <div class="flex h-[24px] w-[24px] items-center" v-html="item.icon"></div>
                 <p class="ml-[16px] text-[16px]">{{ item.title }}</p>
               </div>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
     </div>
-    <div class="row-span-1"></div>
   </div>
 </template>
 
