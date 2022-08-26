@@ -3,7 +3,7 @@ export default {
   name: 'side-bar',
   methods: {
     async toggleFocused(arr) {
-      arr.map((e) => {
+      await arr.map((e) => {
         if (e.link === this.$route.path) {
           e.focused = true
         } else {
@@ -12,14 +12,14 @@ export default {
       })
     },
     async toggleSwitched(arr) {
-      arr.map((e) => {
+      await arr.map((e) => {
         e.focused = false
       })
     },
   },
 
-  created() {
-    this.toggleFocused(this.items)
+  async created() {
+    await this.toggleFocused(this.items)
   },
   data() {
     return {
@@ -75,40 +75,42 @@ export default {
 </script>
 
 <template>
-  <div class="col-span-2 bg-white">
-    <div class="">
-      <div class="p-[20px]">
-        <a href="#" class="my-[20px] flex items-center">
-          <img src="./../../public/favicon.ico" class="h-8 w-8" />
-          <h1 class="ml-2 text-[24px]">Pure Feed</h1>
-        </a>
-      </div>
-      <div>
-        <ul class="space-y-2">
-          <li
-            v-for="item in items"
-            :key="item"
-            class="flex h-[48px] items-center"
-            @click="toggleSwitched(items), (item.focused = true)"
-          >
-            <!--
+  <div class="relative col-span-2">
+    <div class="sticky left-0 top-0 w-full bg-white font-semibold">
+      <div class="">
+        <div class="p-[20px]">
+          <a href="#" class="my-[20px] flex items-center">
+            <img src="./../../public/favicon.ico" class="h-8 w-8" />
+            <h1 class="ml-2 text-[24px]">Pure Feed</h1>
+          </a>
+        </div>
+        <div>
+          <ul class="space-y-2">
+            <li
+              v-for="item in items"
+              :key="item"
+              class="flex h-[48px] items-center"
+              @click="toggleSwitched(items), (item.focused = true)"
+            >
+              <!--
               $route.path == item.link
                 ? (toggelFocesed(items), (item.focused = true))
                 : (toggelFocesed(items), (item.focused = false))
 
 -->
-            <router-link
-              :to="item.link"
-              class="my-[12px] w-full p-[20px]"
-              :class="item.focused ? ' border-l-4 border-green-600 bg-gray-100' : 'ml-[4px]'"
-            >
-              <div class="flex items-center">
-                <div class="flex h-[24px] w-[24px] items-center" v-html="item.icon"></div>
-                <p class="ml-[16px] text-[16px]">{{ item.title }}</p>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+              <router-link
+                :to="item.link"
+                class="my-[12px] w-full p-[20px]"
+                :class="item.focused ? ' border-l-4 border-green-600 bg-gray-100' : 'ml-[4px]'"
+              >
+                <div class="flex items-center">
+                  <div class="flex h-[24px] w-[24px] items-center" v-html="item.icon"></div>
+                  <p class="ml-[16px] text-[16px]">{{ item.title }}</p>
+                </div>
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

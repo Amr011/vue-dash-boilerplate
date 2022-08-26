@@ -10,6 +10,10 @@ const routes = [
     meta: { title: 'Dashboard' },
   },
   {
+    path: '/analytics',
+    meta: { title: 'Analytics' },
+  },
+  {
     // Not Found 404
     path: '/:path(.*)',
     component: () => import('./views/NotFound.vue'),

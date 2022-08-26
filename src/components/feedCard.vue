@@ -7,7 +7,7 @@ export default {
 }
 </script>
 <template>
-  <div class="my-2 flex justify-between bg-white px-4 py-2">
+  <div class="flex h-60 justify-between bg-white px-4 py-2">
     <a href="#"
       ><p>{{ cardTitle }}</p></a
     >

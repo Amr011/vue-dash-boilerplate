@@ -1,16 +1,18 @@
 <script>
+import NavBar from './components/navBar.vue'
 import sideBar from './components/sideBar.vue'
 export default {
-  components: { sideBar },
+  components: { sideBar, NavBar },
 }
 </script>
 
 <template>
   <div>
     <main>
-      <div class="bg-blue-200" v-if="$route.meta.title">
-        <div class="bg-red-200">
-          <div class="grid h-screen grid-cols-12 bg-indigo-400">
+      <div class="" v-if="$route.meta.title">
+        <div class="">
+          <nav-bar />
+          <div class="grid h-screen grid-cols-12">
             <side-bar />
             <router-view />
           </div>
